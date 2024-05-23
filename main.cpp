@@ -1,12 +1,12 @@
-// Nombre: Lorain Valeria González Rivas
-// Matrícula: A01707279
-// Fecha: Jueves, 16 de mayo de 2024
-// Materia: Programación orientada a objetos (Gpo 304)
+// Nombre: Lorain Valeria Gonzalez Rivas
+// Matricula: A01707279
+// Fecha: Jueves, 23 de mayo de 2024
+// Materia: Programacion orientada a objetos (Gpo 304)
 
-// Descripción: este es un proyecto demo para la clase de Programación orientada a objetos
+// Descripcion: este es un proyecto demo para la clase de Programación orientada a objetos
 // Este programa simula un restaurante mexicano, en donde se le da al cliente a elegir 1 de entre 3 opciones predeterminadas
-// con datos concretos acerca de la comida que seleccionó, así como los datos de personales del cliente, del chef y
-// los datos generales del mesero que se le asignó.
+// con datos concretos acerca de la comida que selecciono, asi como los datos de personales del cliente, del chef y
+// los datos generales del mesero que se le asigno.
 
 
 // Bibliotecas
@@ -26,9 +26,9 @@ void menu() {
     std::cout << "4. Salir" << std::endl;
 }
 
-// Función principal
+// Funcion principal
 int main(){
-    // Impresión de mensaje de bienvenida
+    // Impresion de mensaje de bienvenida
     std::cout << "      Bienvenido al Restaurante Mexicano      " << std::endl;
     std::cout << "------------ LA CASONA DE LA ABUELA ------------" << std::endl;
     std::cout << std::endl;
@@ -46,7 +46,7 @@ int main(){
     std::string opcion;
     bool continua = true;
 
-    // Interacción con el usuario para recolectar las variables del cliente
+    // Interaccion con el usuario para recolectar las variables del cliente
     std::cout << "Por favor, introduzca su nombre: ";
     std::cin >> nombre;
     cliente.set_nombre(nombre);
@@ -77,17 +77,17 @@ int main(){
     cliente.set_platillo2();
     cliente.set_platillo3();
 
-    // Ciclo while que indica que mientras continua sea true, se repetirá en bucle
+    // Ciclo while que indica que mientras continua sea true, se repetira en bucle
     while (continua){
-        // Impresión de instrucciones y menú
+        // Impresion de instrucciones y menú
         menu();
         std::cout << "Si no desea continuar, escoja la opcion '4. Salir'" << std::endl;
         std::cout << "De lo contrario, elija una opcion del menu: ";
         std::cin >> opcion;
         std::cout << std::endl;
 
-        // Creación de condicional para que el usuario elija la opción de comida predeterminada
-        // En las opciones, se hacen uso de los atributos platillos y del método imprimir
+        // Creacion de condicional para que el usuario elija la opcion de comida predeterminada
+        // En las opciones, se hacen uso de los atributos platillos y del metodo imprimir
         if (opcion == "1"){
             std::cout << "---------- PLATILLO SELECCIONADO ----------" << std::endl;
 
@@ -117,27 +117,30 @@ int main(){
 
     // Se usan los getters de la clase "Cliente", para imprimir los datos de la persona en la consola
     std::cout << "CLIENTE: " << std::endl;
-    std::cout << "Nombre: " << cliente.get_nombre() << std::endl;
-    std::cout << "Edad: " << cliente.get_edad() << std::endl;
-    std::cout << "Genero: " << cliente.get_genero() << std::endl;
-    std::cout << "Disponibilidad de dinero: " << cliente.get_disp_dinero() << " pesos mexicanos" << std::endl;
+    cliente.mostrar_info();
+    //std::cout << "Nombre: " << cliente.get_nombre() << std::endl;
+    //std::cout << "Edad: " << cliente.get_edad() << std::endl;
+    //std::cout << "Genero: " << cliente.get_genero() << std::endl;
+    //std::cout << "Disponibilidad de dinero: " << cliente.get_disp_dinero() << " pesos mexicanos" << std::endl;
     std::cout<< std::endl;
     // Se usan los getters de la clase "Mesero", para imprimir los datos de la persona en la consola
     std::cout << "MESERO: " << std::endl;
-    std::cout << "Nombre: " << mesero.get_nombre() << std::endl;
+    mesero.mostrar_info();
+    /*std::cout << "Nombre: " << mesero.get_nombre() << std::endl;
     std::cout << "Edad: " << mesero.get_edad() << std::endl;
     std::cout << "Genero: " << mesero.get_genero() << std::endl;
     std::cout << "Salario anual: " << mesero.get_salario() << " pesos mexicanos" << std::endl;
-    std::cout << "Propinas: " << mesero.get_propinas() << " pesos mexicanos" << std::endl;
+    std::cout << "Propinas: " << mesero.get_propinas() << " pesos mexicanos" << std::endl;*/
     std::cout<< std::endl;
     // Se usan los getters de la clase "ChefComida", para imprimir los datos de la persona en la consola
     std::cout << "CHEF: " << std::endl;
-    std::cout << "Nombre: " << chef_comida.get_nombre() << std::endl;
+    chef_comida.mostrar_info();
+    /*std::cout << "Nombre: " << chef_comida.get_nombre() << std::endl;
     std::cout << "Edad: " << chef_comida.get_edad() << std::endl;
     std::cout << "Especialidad: " << chef_comida.get_genero() << std::endl;
     std::cout << "Experiencia: " << chef_comida.get_meses_experiencia1() << " meses" << std::endl;
     std::cout << "Cuenta con un Sous Chef: " << chef_comida.get_sousChef_SoN1() << std::endl;
-    std::cout << "Comida favorita: " << chef_comida.get_comida_favorita() << std::endl;
+    std::cout << "Comida favorita: " << chef_comida.get_comida_favorita() << std::endl;*/
     std::cout<< std::endl;
 
     return 0;
