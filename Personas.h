@@ -1,6 +1,6 @@
 // Nombre: Lorain Valeria Gonz·lez Rivas
 // Matricula: A01707279
-// Fecha: Jueves, 23 de mayo de 2024
+// Fecha: Jueves, 30 de mayo de 2024
 // Materia: Programacion orientada a objetos (Gpo 304)
 
 /**
@@ -11,13 +11,16 @@
 // Bibliotecas
 #include <iostream>
 #include <string>
+#include <sstream>
+#include "Platillos.h"
 
 #ifndef PERSONAS_H
 #define PERSONAS_H
 
+
 // Creacion de clase padre "Personas"
 class Personas {
-private:
+protected:
     // Declaracion de variables de instancia
     std::string nombre;
     int edad;
@@ -38,7 +41,7 @@ public:
     void set_genero(std::string);
 
     // Metodo especifico de la clase
-    virtual void mostrar_info(); // Virtual para cambiar en tiempo de ejecucion, no define como base sino que depende de donde se llama
+    virtual void mostrar_info()=0; // Virtual para cambiar en tiempo de ejecucion, no define como base sino que depende de donde se llama
 };
 
 // Especificaciones de getters
@@ -63,11 +66,7 @@ void Personas::set_genero(std::string gen) {
     genero = gen;
 }
 
-void Personas::mostrar_info() { //Metodo que se sobreescribira en las clases hijas
-    std::cout << "Nombre : " << this->nombre;
-    std::cout << ", Edad: " << this->edad;
-    std::cout << ", Genero: " << this->genero << std::endl;
-}
+
 
 // Creacion de clase hija "Cliente", hereda de clase padre "Personas"
 class Cliente : public Personas {
@@ -96,7 +95,7 @@ public:
     void set_platillo3();
     void imprimir_platillo(Platillos platillo);
 
-    void mostrar_info() override; // sobreescritura de metodo de la clase padre a la hija
+    void mostrar_info(); // sobreescritura de metodo de la clase padre a la hija
 };
 
 // Especificaciones getters
@@ -145,11 +144,10 @@ void Cliente::imprimir_platillo(Platillos platillo) {
 }
 
 void Cliente::mostrar_info() {
-    Personas::mostrar_info(); // sobreescritura del metodo integrando nuevos parametros
-    std::cout << ", Disp dinero: " << this->disp_dinero << std::endl;
-    //std::cout << ", Platillo 1: " << imprimir_platillo(this->get_platillo1()) << std::endl;
-    //std::cout << ", Platillo 2: " << imprimir_platillo(this->get_platillo2()) << std::endl;
-    //std::cout << ", Platillo 3: " << imprimir_platillo(this->get_platillo3()) << std::endl;
+    // sobreescritura del metodo integrando nuevos parametros
+    std::cout << "Nombre : " << this->nombre;
+    std::cout << ", Edad: " << this->edad;
+    std::cout << ", Genero: " << this->genero << std::endl;
 }
 
 // Creacion de clase hija "Mesero", hereda de clase padre "Personas"
@@ -171,7 +169,7 @@ public:
     void set_salario(float);
     void set_propinas(float);
 
-    void mostrar_info() override; //Override indica al programa que donde se llame la funcion del hijo y no al del padre
+    void mostrar_info(); //Override indica al programa que donde se llame la funcion del hijo y no al del padre
 };
 
 // Especificaciones getters
@@ -190,12 +188,12 @@ void Mesero::set_propinas(float prop) {
 }
 
 void Mesero::mostrar_info() { //sobreescritura del metodo con nuevos parametros
-    Personas::mostrar_info(); //__super es lo mismo que "Personas::"
-    //std::cout << "Nombre : " << this->nombre;
-    //std::cout << ", Edad: " << this->edad;
-    //std::cout << ", Genero: " << this->genero << std::endl;
-    std::cout << ", Salario: " << this->salario << std::endl;
-    std::cout << ", Propina: " << this->propinas << std::endl;
+    std::cout << "Nombre: " << get_nombre() << std::endl;
+    std::cout << "Edad: " << get_edad() << std::endl;
+    std::cout << "Genero: " << get_genero() << std::endl;
+    std::cout << "Salario anual: " << get_salario() << " pesos mexicanos" << std::endl;
+    std::cout << "Propinas: " << get_propinas() << " pesos mexicanos" << std::endl;
+    std::cout<< std::endl;
 }
 
 // CreaciÛn de clase hija "ChefComida", hereda de clase padre "Personas"
@@ -223,7 +221,7 @@ public:
     void set_sousChef_SoN1(std::string);
     void set_comida_favorita(std::string);
 
-    void mostrar_info() override; //Override indica al programa que donde se llame la funcion del hijo y no al del padre
+    void mostrar_info(); //Override indica al programa que donde se llame la funcion del hijo y no al del padre
 };
 
 // Especificaciones getters
@@ -255,13 +253,76 @@ void ChefComida::set_comida_favorita(std::string com_fav) {
 }
 
 void ChefComida::mostrar_info() {
-    Personas::mostrar_info(); //sobreescritura del metodo con nuevos parametros
-    //std::cout << "Nombre : " << this->nombre;
-    //std::cout << ", Edad: " << this->edad;
-    //std::cout << ", Genero: " << this->genero << std::endl;
-    std::cout << ", Especialidad 1: " << this->especialidad1 << std::endl;
-    std::cout << ", Meses experiencia : " << this->meses_experiencia1 << std::endl;
-    std::cout << ", SousChef SoN 1: " << this->sousChef_SoN1 << std::endl;
-    std::cout << ", Comida favorita: " << this->comida_favorita << std::endl;
+    std::cout << "Nombre : " << this->nombre << std::endl;
+    std::cout << "Edad: " << this->edad << std::endl;
+    std::cout << "Genero: " << this->genero << std::endl;
+    std::cout << "Especialidad 1: " << this->especialidad1 << std::endl;
+    std::cout << "Meses experiencia : " << this->meses_experiencia1 << std::endl;
+    std::cout << "SousChef SoN 1: " << this->sousChef_SoN1 << std::endl;
+    std::cout << "Comida favorita: " << this->comida_favorita << std::endl;
+    std::cout<< std::endl;
+}
+
+//Creacion clase restaurante
+class Restaurante{
+private:
+    // Declaracion de variables de instancia
+    std::string nombre;
+    std::string direccion;
+    //Composición por objetos de tipo Personas
+    Personas * Empleados[30];
+    int id;
+public:
+    //Constructor
+    Restaurante(): nombre(""),direccion(""), id(0){};
+    Restaurante(std::string nom, std::string dir): nombre(nom),direccion(dir), id(0){};
+
+    // Metodos miembros de la clase
+    //Getters
+    std::string get_nombre();
+    std::string get_direccion();
+    //Setters
+    void set_nombre(std::string);
+    void set_direccion(std::string);
+    //Metodo especifico de clase
+    void crea_empleados();
+    void muestra_empleados();
+};
+
+// Especificaciones de getters
+std::string Restaurante::get_nombre() {
+    return nombre;
+}
+std::string Restaurante::get_direccion() {
+    return direccion;
+}
+
+// Especificaciones setters
+void Restaurante::set_nombre(std::string nom) {
+    nombre = nom;
+}
+void Restaurante::set_direccion(std::string dir) {
+    direccion = dir;
+}
+
+void Restaurante::crea_empleados(){
+    Empleados[id]= new Mesero("Lorenzo", 27, "Hombre", 43050.85, 15.6);
+    id++;
+    Empleados[id]= new Mesero("Pedro", 33, "Hombre", 5670.64, 18.3);
+    id++;
+    Empleados[id]= new Mesero("Joaquin", 45, "Hombre", 3988.17, 12.4);
+    id++;
+    Empleados[id]= new ChefComida("Leisa", 24, "Mujer", "Enchiladas", 41, "Si", "Pambazos");
+    id++;
+    Empleados[id]= new ChefComida("Benito", 36, "Hombre", "Tacos", 63, "No", "Nieve de vainilla");
+    id++;
+    Empleados[id]= new ChefComida("Alejandra", 29, "Mujer", "Pozole", 33, "No", "Sopes");
+    id++;
+}
+
+void Restaurante::muestra_empleados(){
+    for(int i=0;i<id;i++){
+        Empleados[i]->mostrar_info();
+    }
 }
 #endif
