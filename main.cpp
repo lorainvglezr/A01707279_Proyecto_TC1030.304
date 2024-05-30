@@ -1,12 +1,7 @@
 // Nombre: Lorain Valeria Gonzalez Rivas
 // Matricula: A01707279
-// Fecha: Jueves, 23 de mayo de 2024
+// Fecha: Jueves, 30 de mayo de 2024
 // Materia: Programacion orientada a objetos (Gpo 304)
-
-// Descripcion: este es un proyecto demo para la clase de Programación orientada a objetos
-// Este programa simula un restaurante mexicano, en donde se le da al cliente a elegir 1 de entre 3 opciones predeterminadas
-// con datos concretos acerca de la comida que selecciono, asi como los datos de personales del cliente, del chef y
-// los datos generales del mesero que se le asigno.
 
 
 // Bibliotecas
@@ -23,11 +18,16 @@ void menu() {
     std::cout << "1. Enchiladas" << std::endl;
     std::cout << "2. Chilaquiles" << std::endl;
     std::cout << "3. Pozole" << std::endl;
-    std::cout << "4. Salir" << std::endl;
+    std::cout << "4. Info del personal" << std::endl;
+    std::cout << "5. Salir" << std::endl;
 }
 
 // Funcion principal
 int main(){
+    //Se llama a la clase "Restaurante" 
+    Restaurante Casona_de_la_abuela("La Casona de la abuela", "1505 Av. Constituyentes");
+    //Se crean objetos ejemplos de tipo persona dentro de Restaurante
+    Casona_de_la_abuela.crea_empleados();
     // Impresion de mensaje de bienvenida
     std::cout << "      Bienvenido al Restaurante Mexicano      " << std::endl;
     std::cout << "------------ LA CASONA DE LA ABUELA ------------" << std::endl;
@@ -81,7 +81,7 @@ int main(){
     while (continua){
         // Impresion de instrucciones y menú
         menu();
-        std::cout << "Si no desea continuar, escoja la opcion '4. Salir'" << std::endl;
+        std::cout << "Si no desea continuar, escoja la opcion '5. Salir'" << std::endl;
         std::cout << "De lo contrario, elija una opcion del menu: ";
         std::cin >> opcion;
         std::cout << std::endl;
@@ -101,8 +101,13 @@ int main(){
             std::cout << "---------- ACERCA DEL PLATILLO QUE USTED SELECCIONO... ----------" << std::endl;
             cliente.imprimir_platillo(cliente.get_platillo3());
         }
-        // Salir del ciclo while, debido a que continua ya no es true
         else if (opcion == "4"){
+            std::cout << "---------- INFORMACIÓN INDIVIDUAL DE LOS, MESEROS Y CHEFS ----------" << std::endl;
+            std::cout<< std::endl;
+            Casona_de_la_abuela.muestra_empleados();
+        }
+        // Salir del ciclo while, debido a que continua ya no es true
+        else if (opcion == "5"){
             continua = false;
         }
         // Validación de rango de opciones
@@ -111,37 +116,6 @@ int main(){
         }
     }
 
-    // Console Output de los datos de las clases en el documento llamado "Personas.h"
-    std::cout << "---------- INFORMACIÓN INDIVIDUAL DEL CLIENTE, MESERO Y CHEF ----------" << std::endl;
-    std::cout<< std::endl;
-
-    // Se usan los getters de la clase "Cliente", para imprimir los datos de la persona en la consola
-    std::cout << "CLIENTE: " << std::endl;
-    cliente.mostrar_info();
-    //std::cout << "Nombre: " << cliente.get_nombre() << std::endl;
-    //std::cout << "Edad: " << cliente.get_edad() << std::endl;
-    //std::cout << "Genero: " << cliente.get_genero() << std::endl;
-    //std::cout << "Disponibilidad de dinero: " << cliente.get_disp_dinero() << " pesos mexicanos" << std::endl;
-    std::cout<< std::endl;
-    // Se usan los getters de la clase "Mesero", para imprimir los datos de la persona en la consola
-    std::cout << "MESERO: " << std::endl;
-    mesero.mostrar_info();
-    /*std::cout << "Nombre: " << mesero.get_nombre() << std::endl;
-    std::cout << "Edad: " << mesero.get_edad() << std::endl;
-    std::cout << "Genero: " << mesero.get_genero() << std::endl;
-    std::cout << "Salario anual: " << mesero.get_salario() << " pesos mexicanos" << std::endl;
-    std::cout << "Propinas: " << mesero.get_propinas() << " pesos mexicanos" << std::endl;*/
-    std::cout<< std::endl;
-    // Se usan los getters de la clase "ChefComida", para imprimir los datos de la persona en la consola
-    std::cout << "CHEF: " << std::endl;
-    chef_comida.mostrar_info();
-    /*std::cout << "Nombre: " << chef_comida.get_nombre() << std::endl;
-    std::cout << "Edad: " << chef_comida.get_edad() << std::endl;
-    std::cout << "Especialidad: " << chef_comida.get_genero() << std::endl;
-    std::cout << "Experiencia: " << chef_comida.get_meses_experiencia1() << " meses" << std::endl;
-    std::cout << "Cuenta con un Sous Chef: " << chef_comida.get_sousChef_SoN1() << std::endl;
-    std::cout << "Comida favorita: " << chef_comida.get_comida_favorita() << std::endl;*/
-    std::cout<< std::endl;
 
     return 0;
 }
