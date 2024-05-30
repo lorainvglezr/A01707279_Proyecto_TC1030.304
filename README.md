@@ -2,7 +2,7 @@
 Este proyecto se basa en un proyecto de demostración con el objetivo de crear un programa que eventualmente ayudará a integrar todos los temas vistos en el curso de Programación Orientado a Objetos 1 y 2. En resumen, el objetivo del proyecto es comprender el alcance esperado de la informática al final del curso, lo que se logra progresando en los temas tratados en el curso.
 
 ## Contexto
-Un restaurante que se centra en la cocina mexicana que tiene en cuenta los productos que se venden, así como las personas que hacen posible la apertura y gestión de un restaurante, como clientes, cocineros y camareros. Este programa está diseñado para generar una estructura de categorías para que la información sobre los objetos anteriores se pueda gestionar de forma manejable. El restaurante está intentando generar informes de datos sobre las personas presentes, por lo que se generan 3 categorías de personas (Cliente, Mesero y Chef) que heredan propiedades de la clase padre (Personas). Asimismo, cada cliente que ingresa al restaurante puede ingresar sus datos y elegir uno de 3 platillos mexicanos (Enchiladas, Chilaquiles, Pozole), cada uno con sus características predeterminadas. Finalmente, cuando el usuario presione "Salir", se generara un reporte solamente de las personas involucradas en la estancia del cliente, incluyéndolo a él. 
+Un restaurante que se centra en la cocina mexicana que tiene en cuenta los productos que se venden, así como las personas que hacen posible la apertura y gestión de un restaurante, como clientes, cocineros y camareros. Este programa está diseñado para generar una estructura de categorías para que la información sobre los objetos anteriores se pueda gestionar de forma manejable. El restaurante está intentando generar informes de datos sobre las personas presentes, por lo que se generan 3 categorías de personas (Cliente, Mesero y Chef) que heredan propiedades de la clase padre (Personas), la cual es una clase compuesta de la clase "Restaurante". Asimismo, cada cliente que ingresa al restaurante puede ingresar sus datos y elegir uno de 3 platillos mexicanos (Enchiladas, Chilaquiles, Pozole), cada uno con sus características predeterminadas. Finalmente, cuando el usuario presione "Salir", se generara un reporte solamente de las personas involucradas en la estancia del cliente, incluyéndolo a él. 
 
 ## Funcionalidad
 - La funcionalidad es básica.
@@ -10,12 +10,13 @@ Un restaurante que se centra en la cocina mexicana que tiene en cuenta los produ
 - El programa despliega la información de los trabajadores del lugar, que son meseros y chefs.
 - El programa permite visualizar información predeterminada de los platillos que se tienen de opción en el menú.
 
-Primeramente, el programa realiza una pequeña encuesta al usuario, acerca de sus datos personales; luego de esto, se imprime un menú que le permite al usuario elegir el platillo a ordenar. Las opciones son: 
+Primeramente, el programa realiza una pequeña encuesta al usuario, acerca de sus datos personales; luego de esto, se imprime un menú que le permite al usuario elegir alguna de las siguientes opciones que son: 
 1. Enchiladas
 2. Chilaquiles
 3. Pozole
+4. Info del personal
 
-Una vez realizada la elección, se puede acceder a más información acerca de cada tipo de platillos. Si el usuario escoge la opción de "Salir", se despliegarán los datos del clientes, previamente establecidos por él, y los datos predeterminados del mesero y el cocinero.
+Una vez realizada la elección, se puede acceder a más información acerca de cada tipo de platillos o del personal del restaurante. Si el usuario escoge la opción de "Salir", se despliegarán los datos del clientes, previamente establecidos por él, y los datos predeterminados del mesero y el cocinero.
 
 ## Consideraciones
 El programa corre en la consola y está hecho con el estilo de C++ Standard, por lo que corre en todos los sistemas operativos.  
