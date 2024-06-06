@@ -1,6 +1,6 @@
 // Nombre: Lorain Valeria Gonz·lez Rivas
 // Matricula: A01707279
-// Fecha: Jueves, 30 de mayo de 2024
+// Fecha: Jueves, 06 de junio de 2024
 // Materia: Programacion orientada a objetos (Gpo 304)
 
 /**
@@ -41,7 +41,7 @@ public:
     void set_genero(std::string);
 
     // Metodo especifico de la clase
-    virtual void mostrar_info()=0; // Virtual para cambiar en tiempo de ejecucion, no define como base sino que depende de donde se llama
+    virtual void mostrar_info() = 0; // Virtual para cambiar en tiempo de ejecucion, no define como base sino que depende de donde se llama, se genera la clase abstracta
 };
 
 // Especificaciones de getters
@@ -95,7 +95,7 @@ public:
     void set_platillo3();
     void imprimir_platillo(Platillos platillo);
 
-    void mostrar_info(); // sobreescritura de metodo de la clase padre a la hija
+    void mostrar_info() override; // sobreescritura de metodo de la clase padre a la hija
 };
 
 // Especificaciones getters
@@ -169,7 +169,7 @@ public:
     void set_salario(float);
     void set_propinas(float);
 
-    void mostrar_info(); //Override indica al programa que donde se llame la funcion del hijo y no al del padre
+    void mostrar_info() override; //Override indica al programa que donde se llame la funcion del hijo y no al del padre
 };
 
 // Especificaciones getters
@@ -221,7 +221,7 @@ public:
     void set_sousChef_SoN1(std::string);
     void set_comida_favorita(std::string);
 
-    void mostrar_info(); //Override indica al programa que donde se llame la funcion del hijo y no al del padre
+    void mostrar_info() override; //Override indica al programa que donde se llame la funcion del hijo y no al del padre
 };
 
 // Especificaciones getters
