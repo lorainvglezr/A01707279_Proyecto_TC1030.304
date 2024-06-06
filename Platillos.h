@@ -1,6 +1,6 @@
 // Nombre: Lorain Valeria González Rivas
 // Matrícula: A01707279
-// Fecha: Jueves, 30 de mayo de 2024
+// Fecha: Jueves, 06 de junio de 2024
 // Materia: Programación orientada a objetos (Gpo 304)
 
 /**
