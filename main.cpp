@@ -1,6 +1,6 @@
 // Nombre: Lorain Valeria Gonzalez Rivas
 // Matricula: A01707279
-// Fecha: Jueves, 30 de mayo de 2024
+// Fecha: Jueves, 06 de junio de 2024
 // Materia: Programacion orientada a objetos (Gpo 304)
 
 
@@ -26,9 +26,9 @@ void menu() {
 int main(){
     //Se llama a la clase "Restaurante" 
     Restaurante Casona_de_la_abuela("La Casona de la abuela", "1505 Av. Constituyentes");
-    //Se crean objetos ejemplos de tipo persona dentro de Restaurante
+    //Se crean objetos ejemplos de tipo Persona dentro de Restaurante
     Casona_de_la_abuela.crea_empleados();
-    // Impresion de mensaje de bienvenida
+    // Impresión de mensaje de bienvenida
     std::cout << "      Bienvenido al Restaurante Mexicano      " << std::endl;
     std::cout << "------------ LA CASONA DE LA ABUELA ------------" << std::endl;
     std::cout << std::endl;
@@ -46,7 +46,7 @@ int main(){
     std::string opcion;
     bool continua = true;
 
-    // Interaccion con el usuario para recolectar las variables del cliente
+    // Interacción con el usuario para recolectar las variables del cliente
     std::cout << "Por favor, introduzca su nombre: ";
     std::cin >> nombre;
     cliente.set_nombre(nombre);
@@ -79,14 +79,14 @@ int main(){
 
     // Ciclo while que indica que mientras continua sea true, se repetira en bucle
     while (continua){
-        // Impresion de instrucciones y menú
+        // Impresión de instrucciones y menú
         menu();
         std::cout << "Si no desea continuar, escoja la opcion '5. Salir'" << std::endl;
         std::cout << "De lo contrario, elija una opcion del menu: ";
         std::cin >> opcion;
         std::cout << std::endl;
 
-        // Creacion de condicional para que el usuario elija la opcion de comida predeterminada
+        // Creación de condicional para que el usuario elija la opcion de comida predeterminada
         // En las opciones, se hacen uso de los atributos platillos y del metodo imprimir
         if (opcion == "1"){
             std::cout << "---------- PLATILLO SELECCIONADO ----------" << std::endl;
