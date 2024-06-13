@@ -1,18 +1,30 @@
-// Nombre: Lorain Valeria Gonzalez Rivas
-// Matricula: A01707279
-// Fecha: Jueves, 06 de junio de 2024
-// Materia: Programacion orientada a objetos (Gpo 304)
+/*
+ * Proyecto Restaurante
+ * Lorain Valeria González Rivas
+ * A01707279
+ * 13 de junio de 2024
+ */
 
+/* 
+ * Proyecto realizado para Programación Orientada a Objetos
+ * Es un programa basado en un Restaurante y su funcionamiento, este programa proporciona
+ * información acerca de 3 tipos de platillos, también menciona los datos de los trabajadores
+ * del lugar (Meseros y Chefs). Por otra parte, el usuario puede agregar
+ * sus datos personales y guardarlos en variables (input del usuario)
+ */
 
 // Bibliotecas
-#include <iostream>
-#include <string>
-#include "Platillos.h"
-#include "Personas.h"
+#include <iostream> // Para imprimir
+#include <string> // Para usar strings
 
-// Menu
+//Archivos del proyecto para desempeñar las funciones necesarias
+#include "Platillos.h" // Clase de mi proyecto
+#include "Personas.h" // Clases de mi proyecto
+#include "Restaurante.h" // Clase que implementa polimorfismo
+
+// Función menú
 void menu() {
-    // Se imprimen las opciones en pantalla
+    // Se imprimen las opciones del menúque contendrá el programa
     std::cout << std::endl;
     std::cout << "------------ MENU ------------"<< std::endl;
     std::cout << "1. Enchiladas" << std::endl;
@@ -22,100 +34,95 @@ void menu() {
     std::cout << "5. Salir" << std::endl;
 }
 
-// Funcion principal
 int main(){
-    //Se llama a la clase "Restaurante" 
-    Restaurante Casona_de_la_abuela("La Casona de la abuela", "1505 Av. Constituyentes");
-    //Se crean objetos ejemplos de tipo Persona dentro de Restaurante
-    Casona_de_la_abuela.crea_empleados();
-    // Impresión de mensaje de bienvenida
+    // Creación de un objeto Restaurante que representa "La Taberna del Mariachi"
+    Restaurante Taberna_del_Mariachi("La Taberna del Mariachi", "1505 Av. Constituyentes");
+    
+    // Creación de empleados en el restaurante
+    Taberna_del_Mariachi.crea_empleados();
+    
+    // Mensaje de bienvenida al restaurante
     std::cout << "      Bienvenido al Restaurante Mexicano      " << std::endl;
-    std::cout << "------------ LA CASONA DE LA ABUELA ------------" << std::endl;
+    std::cout << "------------ LA TABERNA DEL MARIACHI ------------" << std::endl;
     std::cout << std::endl;
-
-    // Se llama a la clase "Cliente" y se crea un atributo de tipo "Cliente"
+    
+    // Creación de un objeto Cliente que controlará todo
     Cliente cliente;
 
-    // Atributos de clase "Cliente"
-    std::string nombre;
-    int edad;
-    std::string genero;
-    float disp_dinero;
+    // Variables para almacenar los datos del cliente
+    std::string nombre; // Variable nombre de tipo string
+    int edad; // Variable edad de tipo integer
+    std::string genero; // Variable genero de tipo string
+    float dineroDisponible; // Variable dineroDisponible de tipo float
 
-    // Atributos del main
-    std::string opcion;
-    bool continua = true;
+    std::string opcion; // Variable para almacenar la opción del menú seleccionada por el usuario
+    
+    bool continua = true; // Variable para ciclar el programa
 
-    // Interacción con el usuario para recolectar las variables del cliente
-    std::cout << "Por favor, introduzca su nombre: ";
-    std::cin >> nombre;
+    // Ingreso de datos del cliente y uso de setters de la clase Cliente
+    //Se pide el nombre del cliente para su almacenamiento
+    std::cout << "Por favor, introduzca su nombre completo: ";
+    std::getline(std::cin, nombre); // Console input que guarda más de una palabra en la variable nombre
     cliente.set_nombre(nombre);
     std::cout << "Ingrese su edad: ";
-    std::cin >> edad;
+    std::cin >> edad; // Console input que guarda en variable edad
     cliente.set_edad(edad);
     std::cout << "Introduzca su genero: ";
-    std::cin >> genero;
+    std::cin >> genero; // Console input que guarda en variable genero
     cliente.set_genero(genero);
     std::cout << "Ingrese su disponibilidad de dinero: ";
-    std::cin >> disp_dinero;
-    cliente.set_disp_dinero(disp_dinero);
+    std::cin >> dineroDisponible;// Console input que guarda en variable dineroDisponible
+    cliente.set_dineroDisponible(dineroDisponible);
 
-    /** Uso de la clase "Mesero", en donde se establecen valores predeterminados
-     * de las variables y se hace uso de las funciones del documento llamado
-     * "Personas.h" que se establecieron para la clase "Mesero"
-     */
-    Mesero mesero("Lorenzo", 27, "Hombre", 43050.85, 15.6);
+    // Creación de objetos Platillos predeterminados
+    Platillos plato1("Enchiladas", 122.64, 12, 1, 168, "Verde", "Pollo", "Cebolla y cilantro");
+    Platillos plato2("Chilaquiles", 102.46, 12, 1, 486, "Rojo", "Huevo estrellado", "Cebolla y cilantro");
+    Platillos plato3("Pozole", 125.51, 23, 2, 240, "Rojo", "Cerdo", "Cilantro y rabano");
+    
+    // Asignación de una opción de platillo tipo Platillos al cliente
+    cliente.add_plato(plato1);
+    cliente.add_plato(plato2);
+    cliente.add_plato(plato3);
 
-    /** Uso de la clase "ChefComida", en donde se establecen valores predeterminados
-     * de las variables y se hace uso de las funciones del documento llamado
-     * "Personas.h" que se establecieron para la clase "ChefComida"
-     */
-    ChefComida chef_comida("Leisa", 24, "Mujer", "Enchiladas", 41, "Si", "Pambazos");
-
-    // Uso de los setters de la clase "Cliente" hechos para los variables de tipo Platillos
-    cliente.set_platillo1();
-    cliente.set_platillo2();
-    cliente.set_platillo3();
-
-    // Ciclo while que indica que mientras continua sea true, se repetira en bucle
+    // Bucle principal
     while (continua){
-        // Impresión de instrucciones y menú
+        // Llamada a la función menu()
         menu();
-        std::cout << "Si no desea continuar, escoja la opcion '5. Salir'" << std::endl;
-        std::cout << "De lo contrario, elija una opcion del menu: ";
+        // Console output de instrucciones finales del menú
+        std::cout << "Si no desea continuar, escoja la opción '5. Salir'" << std::endl;
+        std::cout << "De lo contrario, elija una opción del menú: ";
         std::cin >> opcion;
         std::cout << std::endl;
-
-        // Creación de condicional para que el usuario elija la opcion de comida predeterminada
-        // En las opciones, se hacen uso de los atributos platillos y del metodo imprimir
+        
+        // Condicional if que verifica la opción seleccionada por el usuario
+        // Depeniendo de la opción elegida se muestran los objetos almacenados de los platos del cliente (del 1 al 3)
         if (opcion == "1"){
-            std::cout << "---------- PLATILLO SELECCIONADO ----------" << std::endl;
+            std::cout << "---------- ACERCA DEL PLATILLO QUE USTED SELECCIONO... ----------" << std::endl;
 
-            cliente.imprimir_platillo(cliente.get_platillo1());
+            cliente.imprimir_plato(0);
         }
         else if (opcion == "2"){
             std::cout << "---------- ACERCA DEL PLATILLO QUE USTED SELECCIONO... ----------" << std::endl;
-            cliente.imprimir_platillo(cliente.get_platillo2());
+            cliente.imprimir_plato(1);
         }
         else if (opcion == "3"){
             std::cout << "---------- ACERCA DEL PLATILLO QUE USTED SELECCIONO... ----------" << std::endl;
-            cliente.imprimir_platillo(cliente.get_platillo3());
+            cliente.imprimir_plato(2);
         }
+        // Opción que muestra los objetos creados por polimorfismo de los empleados del restaurante
         else if (opcion == "4"){
-            std::cout << "---------- INFORMACIÓN INDIVIDUAL DE LOS, MESEROS Y CHEFS ----------" << std::endl;
+            std::cout << "---------- INFORMACIÓN INDIVIDUAL DE LOS MESEROS Y CHEFS DEL RESTAURANTE ----------" << std::endl;
             std::cout<< std::endl;
-            Casona_de_la_abuela.muestra_empleados();
+            Taberna_del_Mariachi.muestra_empleados();
         }
-        // Salir del ciclo while, debido a que continua ya no es true
+        // Opción para salir del bucle y terminar el programa
         else if (opcion == "5"){
             continua = false;
         }
-        // Validación de rango de opciones
+        // Mensaje de error al seleccionar alguna opción inválida
         else{
             std::cout << "ERROR OPCION INVALIDA" << std::endl;
         }
     }
-
-
     return 0;
 }
