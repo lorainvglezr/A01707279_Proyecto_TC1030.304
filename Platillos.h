@@ -1,12 +1,14 @@
-// Nombre: Lorain Valeria González Rivas
-// Matrícula: A01707279
-// Fecha: Jueves, 06 de junio de 2024
-// Materia: Programación orientada a objetos (Gpo 304)
+/*
+ * Proyecto Restaurante
+ * Lorain Valeria González Rivas
+ * A01707279
+ * 13 de junio de 2024
+ */
 
-/**
- * Clase Platillo, en donde se manejan las características generales
- * de las opciones de platillo del menú, estas se
- * asignaron predeterminadamente a cada uno de los platillos.
+/*
+ * En este archivo se encuentra la clase Platillos, en donde se
+ * establecen todas las variables y métodos a utilizar para la
+ * predeterminación de los platillos que se despliegan en el menú. 
  */
 
 // Bibliotecas
@@ -16,92 +18,215 @@
 #ifndef PLATILLOS_H
 #define PLATILLOS_H
 
-// Creación de clase "Platillos"
+// Clase Platillos
 class Platillos{
+// Variables privadas de instancia la clase Platillos
 private:
-    // Declaración de variables de instancia
-    std::string nombre_platillo;
+    std::string nombrePlatillo;
     float precio;
-    int cant_ingredientes;
-    int cant_personas;
+    int ingredientesTotales;
+    int numeroPersonas;
     float calorias;
     std::string color;
     std::string proteina;
     std::string verduras;
+// Atributos públicos
 public:
-    // Constructor
-    Platillos(): nombre_platillo(""), precio(0), cant_ingredientes(0), cant_personas(0), calorias(0), color(""), proteina(""), verduras(""){};
-    Platillos(std::string nom_plato, float pre, int can_ingre, int can_per, float cal, std::string col, std::string prote, std::string verdu): nombre_platillo(nom_plato), precio(pre), cant_ingredientes(can_ingre), cant_personas(can_per), calorias(cal), color(col), proteina(prote), verduras(verdu){};
+    /*
+     * Constructor por default
+     *
+     * @param
+     * @return Objeto Platillos
+     */
+    Platillos(): nombrePlatillo(""), precio(0), ingredientesTotales(0), numeroPersonas(0), calorias(0), color(""), proteina(""), verduras(""){};
+    /*
+     * Constructor (sobrecarga)
+     *
+     * @param nomPlato, pre, ingreTot, numPer, cal, col, prote, verdu
+     * @return Objeto Platillos
+     */
+    Platillos(std::string nomPlato, float pre, int ingreTot, int numPer, float cal, std::string col, std::string prote, std::string verdu): nombrePlatillo(nomPlato), precio(pre), ingredientesTotales(ingreTot), numeroPersonas(numPer), calorias(cal), color(col), proteina(prote), verduras(verdu){};
 
     // Métodos miembros de la clase
     // Getters
-    std::string get_nombre_platillo();
+    std::string get_nombrePlatillo();
     float get_precio();
-    int get_cant_ingredientes();
-    int get_cant_personas();
+    int get_ingredientesTotales();
+    int get_numeroPersonas();
     float get_calorias();
     std::string get_color();
     std::string get_proteina();
     std::string get_verduras();
-    // Setters
-    void set_nombre_platillo(std::string);
+    //Setters
+    void set_nombrePlatillo(std::string);
     void set_precio(float);
-    void set_cant_ingredientes(int);
-    void set_cant_personas(int);
+    void set_ingredientesTotales(int);
+    void set_numeroPersonas(int);
     void set_calorias(float);
     void set_color(std::string);
     void set_proteina(std::string);
     void set_verduras(std::string);
 };
-
-// Especificaciones getters
-std::string Platillos::get_nombre_platillo(){
-    return nombre_platillo;
+/*
+ * getter de variable nombrePlatillo
+ * Regresa el nombre del platillo
+ *
+ * @param
+ * @return nombrePlatillo
+ */
+std::string Platillos::get_nombrePlatillo(){
+    return nombrePlatillo;
 }
+/*
+ * getter de variable precio
+ * Regresa el precio del platillo
+ *
+ * @param
+ * @return precio
+ */
 float Platillos::get_precio(){
     return precio;
 }
-int Platillos::get_cant_ingredientes(){
-    return cant_ingredientes;
+/*
+ * getter de variable ingredientesTotatles
+ * Regresa el número de ingredientes totales que tiene el platillo
+ *
+ * @param
+ * @return ingredientesTotatles
+ */
+int Platillos::get_ingredientesTotales(){
+    return ingredientesTotales;
 }
-int Platillos::get_cant_personas(){
-    return cant_personas;
+/*
+ * getter de variable numeroPersonas
+ * Regresa el número de personas para las que se sugiere el consumo
+ * del platillo
+ *
+ * @param
+ * @return numeroPersonas
+ */
+int Platillos::get_numeroPersonas(){
+    return numeroPersonas;
 }
+/*
+ * getter de variable calorias
+ * Regresa el número de calorías que se piensa que el
+ * platillo contiene
+ *
+ * @param
+ * @return calorias
+ */
 float Platillos::get_calorias(){
     return calorias;
 }
+/*
+ * getter de variable color
+ * Regresa el color de la salsa o de los componentes generales
+ * del platillo
+ *
+ * @param
+ * @return numeroPersonas
+ */
 std::string Platillos::get_color(){
     return color;
 }
+/*
+ * getter de variable proteina
+ * Regresa las proteínas que lleva el platillo
+ *
+ * @param
+ * @return proteina
+ */
 std::string Platillos::get_proteina(){
     return proteina;
 }
+/*
+ * getter de variable verduras
+ * Regresa las verduras que lleva el platillo
+ *
+ * @param
+ * @return verduras
+ */
 std::string Platillos::get_verduras(){
     return verduras;
 }
-
-// Especificaciones setters
-void Platillos::set_nombre_platillo(std::string nom_plato){
-    nombre_platillo = nom_plato;
+/*
+ * setter de variable nombrePlatillo
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param nomPlato
+ * @return
+ */
+void Platillos::set_nombrePlatillo(std::string nomPlato){
+    nombrePlatillo = nomPlato;
 }
+/*
+ * setter de variable precio
+ * Asigna a la variable un float que recibe del objeto
+ *
+ * @param pre
+ * @return
+ */
 void Platillos::set_precio(float pre){
     precio = pre;
 }
-void Platillos::set_cant_ingredientes(int can_ingre){
-    cant_ingredientes = can_ingre;
+/*
+ * setter de variable ingredientesTotales
+ * Asigna a la variable un integer que recibe del objeto
+ *
+ * @param ingreTot
+ * @return
+ */
+void Platillos::set_ingredientesTotales(int ingreTot){
+    ingredientesTotales = ingreTot;
 }
-void Platillos::set_cant_personas(int can_per){
-    cant_personas = can_per;
+/*
+ * setter de variable numeroPersonas
+ * Asigna a la variable un integer que recibe del objeto
+ *
+ * @param numPer
+ * @return
+ */
+void Platillos::set_numeroPersonas(int numPer){
+    numeroPersonas = numPer;
 }
+/*
+ * setter de variable calorias
+ * Asigna a la variable un float que recibe del objeto
+ *
+ * @param cal
+ * @return
+ */
 void Platillos::set_calorias(float cal){
     calorias = cal;
 }
+/*
+ * setter de variable color
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param col
+ * @return
+ */
 void Platillos::set_color(std::string col){
     color = col;
 }
+/*
+ * setter de variable proteina
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param prote
+ * @return
+ */
 void Platillos::set_proteina(std::string prote){
     proteina = prote;
 }
+/*
+ * setter de variable verduras
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param verdu
+ * @return
+ */
 void Platillos::set_verduras(std::string verdu){
     verduras = verdu;
 }
