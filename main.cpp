@@ -117,6 +117,7 @@ int main(){
         }
         // Opción para salir del bucle y terminar el programa
         else if (opcion == "5"){
+            // Mensaje de despedida y agradecimiento al cliente
             std::cout << "Muchas gracias por su visita y por escoger comer en La Taberna del Mariachi" << std::endl;
             std::cout<< std::endl;
             continua = false;
