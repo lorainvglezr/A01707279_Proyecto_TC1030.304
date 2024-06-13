@@ -117,6 +117,8 @@ int main(){
         }
         // Opción para salir del bucle y terminar el programa
         else if (opcion == "5"){
+            std::cout << "Muchas gracias por su visita y por escoger comer en La Taberna del Mariachi" << std::endl;
+            std::cout<< std::endl;
             continua = false;
         }
         // Mensaje de error al seleccionar alguna opción inválida
