@@ -1,328 +1,472 @@
-// Nombre: Lorain Valeria Gonz·lez Rivas
-// Matricula: A01707279
-// Fecha: Jueves, 06 de junio de 2024
-// Materia: Programacion orientada a objetos (Gpo 304)
+/*
+ * Proyecto Restaurante
+ * Lorain Valeria González Rivas
+ * A01707279
+ * 13 de junio de 2024
+ */
 
-/**
- * Clase padre Personas, en donde se manejan las caracteristicas de
- * un individuo en general, el cual puede ser un cliente, un chef o un mesero (clases hijas).
+/*
+ * En este archivo se encuentra la clase abstracta Personas, que es la clase padre,
+ * así como también hay 3 clases hijas que son Cliente, Mesero y ChefComida. De la clase
+ * padre se heredan los atributos de nombre, edad y género, además está el
+ * método de mostrar_info que será sobreescrito. Cada clase
+ * agrega atributos y métodos propios.
  */
 
 // Bibliotecas
 #include <iostream>
 #include <string>
 #include <sstream>
+
+//Archivo del proyecto para desempeñar las funciones necesarias
 #include "Platillos.h"
 
 #ifndef PERSONAS_H
 #define PERSONAS_H
 
-
-// Creacion de clase padre "Personas"
-class Personas {
+// Clase padre abstracta Personas
+class Personas{
 protected:
-    // Declaracion de variables de instancia
+    // Variables protegidas de instancia la clase Personas
     std::string nombre;
     int edad;
     std::string genero;
+// Atributos públicos
 public:
-    // Constructor
-    Personas() : nombre(""), edad(0), genero("") {};
-    Personas(std::string nom, int ed, std::string gen) : nombre(nom), edad(ed), genero(gen) {};
-
-    // Metodos miembros de la clase
+    /*
+     * Constructor por default
+     *
+     * @param
+     * @return Objeto Personas
+     */
+    Personas() : nombre(""), edad(0), genero(""){};
+    /*
+     * Constructor (sobrecarga)
+     *
+     * @param nom, ed, gen
+     * @return Objeto Personas
+     */
+    Personas(std::string nom, int ed, std::string gen) : nombre(nom), edad(ed), genero(gen){};
+    
+    virtual ~Personas(){}; // Declaración de destructor virtual para clase Restaurante (implementa polimorfismo)
+    
+    // Métodos miembros de la clase
     // Getters
     std::string get_nombre();
     int get_edad();
     std::string get_genero();
-    // Setters
+    //Setters
     void set_nombre(std::string);
     void set_edad(int);
     void set_genero(std::string);
-
-    // Metodo especifico de la clase
-    virtual void mostrar_info() = 0; // Virtual para cambiar en tiempo de ejecucion, no define como base sino que depende de donde se llama, se genera la clase abstracta
+    // Método abstracto que será sobreescrito
+    virtual void mostrar_info() = 0;
 };
-
-// Especificaciones de getters
-std::string Personas::get_nombre() {
+/*
+ * getter de variable nombre
+ * Regresa el nombre de la persona
+ *
+ * @param
+ * @return nombre
+ */
+std::string Personas::get_nombre(){
     return nombre;
 }
-int Personas::get_edad() {
+/*
+ * getter de variable edad
+ * Regresa la edad de la persona
+ *
+ * @param
+ * @return edad
+ */
+int Personas::get_edad(){
     return edad;
 }
-std::string Personas::get_genero() {
+/*
+ * getter de variable genero
+ * Regresa el genero de la persona
+ *
+ * @param
+ * @return genero
+ */
+std::string Personas::get_genero(){
     return genero;
 }
-
-// Especificaciones setters
-void Personas::set_nombre(std::string nom) {
+/*
+ * setter de variable nombre
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param nom
+ * @return
+ */
+void Personas::set_nombre(std::string nom){
     nombre = nom;
 }
-void Personas::set_edad(int ed) {
+/*
+ * setter de variable edad
+ * Asigna a la variable un integer que recibe del objeto
+ *
+ * @param ed
+ * @return
+ */
+void Personas::set_edad(int ed){
     edad = ed;
 }
-void Personas::set_genero(std::string gen) {
+/*
+ * setter de variable genero
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param gen
+ * @return
+ */
+void Personas::set_genero(std::string gen){
     genero = gen;
 }
 
 
-
-// Creacion de clase hija "Cliente", hereda de clase padre "Personas"
-class Cliente : public Personas {
+// Declaración de la clase Cliente que hereda de la clase Personas
+class Cliente : public Personas{
+// Declaro las variables privadas de instancia
 private:
-    // Declaracion de variables de instancia
-    float disp_dinero;
-    // Objeto de tipo Platillo, inicio composicion de la clase "Platillos"
-    Platillos platillo1;
-    Platillos platillo2;
-    Platillos platillo3;
+    float dineroDisponible;
+    Platillos plato[3]; // Variable que recibe arreglo de tipo Platillos
+    int numeroPlatillos;
+// Atributos públicos
 public:
-    // Constructor
-    Cliente() : Personas(), disp_dinero(0) {};
-    Cliente(std::string nom, int ed, std::string gen, float dis_din) : Personas(nom, ed, gen), disp_dinero(dis_din) {}; //Sobrecarga de metodos en el constructor
-
-    // Metodos miembros de la clase
+    /*
+     * Constructor por default
+     *
+     * @param
+     * @return Objeto Cliente
+     */
+    Cliente() : Personas(), dineroDisponible(0), numeroPlatillos(0){};
+    /*
+     * Constructor (sobrecarga)
+     *
+     * @param nom, ed, gen, dinDisp
+     * @return Objeto Cliente
+     */
+    Cliente(std::string nom, int ed, std::string gen, float dinDisp) : Personas(nom, ed, gen), dineroDisponible(dinDisp), numeroPlatillos(0){};
+    
+    // Métodos miembros de la clase
     // Getters
-    float get_disp_dinero();
-    Platillos get_platillo1();
-    Platillos get_platillo2();
-    Platillos get_platillo3();
+    float get_dineroDisponible();
+    Platillos get_plato(int);
     // Setters
-    void set_disp_dinero(float);
-    void set_platillo1();
-    void set_platillo2();
-    void set_platillo3();
-    void imprimir_platillo(Platillos platillo);
+    void set_dineroDisponible(float);
 
-    void mostrar_info() override; // sobreescritura de metodo de la clase padre a la hija
+    void add_plato(Platillos &); // Método para agregar un platillo al cliente
+    void imprimir_plato(int); // Método para imprimir la información de un platillo
+    void mostrar_info() override; // Método sobreescrito para mostrar la información del cliente
 };
+/*
+ * getter de variable dineroDisponible
+ * Regresa la cantidad de dinero disponible del cliente
+ *
+ * @param
+ * @return dineroDisponible
+ */
+float Cliente::get_dineroDisponible(){
+    return dineroDisponible;
+}
+/*
+ * getter de variable plato
+ * Regresa el plato seleccionado del arreglo
+ *
+ * @param
+ * @return plato[n]
+ */
+Platillos Cliente::get_plato(int n){
+    return plato[n];
+}
+/*
+ * setter de variable dineroDisponible
+ * Asigna a la variable un float que recibe del objeto
+ *
+ * @param dinDisp
+ * @return
+ */
+void Cliente::set_dineroDisponible(float dinDisp){
+    dineroDisponible = dinDisp;
+}
+/*
+ * Función llamada add_plato
+ * Asigna el objeto Platillos P al elemento numeroPlatillos del
+ * arreglo plato. Incrementa el contador numeroPlatillos en 1 para
+ * indicar que se ha agregado un nuevo platillo
+ *
+ * @param &P
+ * @return
+ */
+void Cliente::add_plato(Platillos &P){
+    plato[numeroPlatillos] = P;
+    numeroPlatillos ++;
+}
+/*
+ * Función llamada imprimir_plato
+ * Imprime el nombre, precio, cantidad de ingredientes, cantidad
+ * de personas por plato, calorías, color, tipo de proteína y
+ * verduras del plato seleccionado por el cliente, esto
+ * en la posición n del arreglo plato.
+ *
+ * @param n
+ * @return
+ */
+void Cliente::imprimir_plato(int n){
+    std::cout << "Nombre: " << plato[n].get_nombrePlatillo() << std::endl;
+    std::cout << "Precio: " << plato[n].get_precio() << std::endl;
+    std::cout << "Cantidad de ingredientes: " << plato[n].get_ingredientesTotales() << std::endl;
+    std::cout << "Cantidad de personas por plato: " << plato[n].get_numeroPersonas() << std::endl;
+    std::cout << "Calorías: " << plato[n].get_calorias() << std::endl;
+    std::cout << "Color: " << plato[n].get_color() << std::endl;
+    std::cout << "Tipo de proteina: " << plato[n].get_proteina() << std::endl;
+    std::cout << "Verduras: " << plato[n].get_verduras() << std::endl;
+}
+/*
+ * Función llamada mostrar_info
+ * Imprime el nombre, la edad y el género del cliente, utilizando
+ * el puntero "this" para acceder al miembro de la clase.
+ *
+ * @param
+ * @return
+ */
+void Cliente::mostrar_info(){
+    std::cout << "Nombre completo: " << this-> nombre;
+    std::cout << "Edad: " << this-> edad;
+    std::cout << "Género: " << this-> genero << std::endl;
+}
 
-// Especificaciones getters
-float Cliente::get_disp_dinero() {
-    return disp_dinero;
-}
-Platillos Cliente::get_platillo1() {
-    return platillo1;
-}
-Platillos Cliente::get_platillo2() {
-    return platillo2;
-}
-Platillos Cliente::get_platillo3() {
-    return platillo3;
-}
 
-// Especificaciones setters
-void Cliente::set_disp_dinero(float dis_din) {
-    disp_dinero = dis_din;
-}
-// DeclaraciÛn de valores predeterminados en el platillo 1
-void Cliente::set_platillo1() {
-    Platillos plato1("Enchiladas", 122.64, 12, 1, 168, "Verde", "Pollo", "Cebolla y cilantro");
-    platillo1 = plato1;
-}
-// DeclaraciÛn de valores predeterminados en el platillo 2
-void Cliente::set_platillo2() {
-    Platillos plato2("Chilaquiles", 102.46, 12, 1, 486, "Rojo", "Huevo estrellado", "Cebolla y cilantro");
-    platillo2 = plato2;
-}
-// DeclaraciÛn de valores predeterminados en el platillo 3
-void Cliente::set_platillo3() {
-    Platillos plato3("Pozole", 125.51, 23, 2, 240, "Rojo", "Cerdo", "Cilantro y rabano");
-    platillo3 = plato3;
-}
-// Uso de los getters, para imprimir en consola los valores de las variables de los platillos
-void Cliente::imprimir_platillo(Platillos platillo) {
-    std::cout << "Nombre: " << platillo.get_nombre_platillo() << std::endl;
-    std::cout << "Precio: " << platillo.get_precio() << std::endl;
-    std::cout << "Cantidad de ingredientes: " << platillo.get_cant_ingredientes() << std::endl;
-    std::cout << "Cantidad de personas por plato: " << platillo.get_cant_personas() << std::endl;
-    std::cout << "Calorias: " << platillo.get_calorias() << std::endl;
-    std::cout << "Color: " << platillo.get_color() << std::endl;
-    std::cout << "Tipo de proteina: " << platillo.get_proteina() << std::endl;
-    std::cout << "Verduras: " << platillo.get_verduras() << std::endl;
-}
-
-void Cliente::mostrar_info() {
-    // sobreescritura del metodo integrando nuevos parametros
-    std::cout << "Nombre : " << this->nombre;
-    std::cout << ", Edad: " << this->edad;
-    std::cout << ", Genero: " << this->genero << std::endl;
-}
-
-// Creacion de clase hija "Mesero", hereda de clase padre "Personas"
-class Mesero : public Personas {
+// Declaración de la clase Mesero que hereda de la clase Personas
+class Mesero : public Personas{
+// Declaro las variables privadas de instancia
 private:
-    // DeclaraciÛn de variables de instancia
     float salario;
     float propinas;
+// Atributos públicos
 public:
-    // Constructor
-    Mesero() : Personas(), salario(0), propinas(0) {};
-    Mesero(std::string nom, int ed, std::string gen, float sal, float prop) : Personas(nom, ed, gen), salario(sal), propinas(prop) {};
-
-    // MÈtodos miembros de la clas
+    /*
+     * Constructor por default
+     *
+     * @param
+     * @return Objeto Mesero
+     */
+    Mesero() : Personas(), salario(0), propinas(0){};
+    /*
+     * Constructor (sobrecarga)
+     *
+     * @param nom, ed, gen, sal, prop
+     * @return Objeto Mesero
+     */
+    Mesero(std::string nom, int ed, std::string gen, float sal, float prop) : Personas(nom, ed, gen), salario(sal), propinas(prop){};
+    
+    // Métodos miembros de la clase
     // Getters
     float get_salario();
     float get_propinas();
     // Setters
     void set_salario(float);
     void set_propinas(float);
-
-    void mostrar_info() override; //Override indica al programa que donde se llame la funcion del hijo y no al del padre
+    // Método sobreescrito para mostrar la información del mesero
+    void mostrar_info() override;
 };
-
-// Especificaciones getters
-float Mesero::get_salario() {
+/*
+ * getter de variable salario
+ * Regresa el salario del mesero
+ *
+ * @param
+ * @return salario
+ */
+float Mesero::get_salario(){
     return salario;
 }
-float Mesero::get_propinas() {
+/*
+ * getter de variable propinas
+ * Regresa las propinas que le dejan al mesero
+ *
+ * @param
+ * @return propinas
+ */
+float Mesero::get_propinas(){
     return propinas;
 }
-// Especificaciones setters
-void Mesero::set_salario(float sal) {
+/*
+ * setter de variable salario
+ * Asigna a la variable un float que recibe del objeto
+ *
+ * @param sal
+ * @return
+ */
+void Mesero::set_salario(float sal){
     salario = sal;
 }
-void Mesero::set_propinas(float prop) {
+/*
+ * setter de variable propinas
+ * Asigna a la variable un float que recibe del objeto
+ *
+ * @param prop
+ * @return
+ */
+void Mesero::set_propinas(float prop){
     propinas = prop;
 }
-
-void Mesero::mostrar_info() { //sobreescritura del metodo con nuevos parametros
-    std::cout << "Nombre: " << get_nombre() << std::endl;
+/*
+ * Función llamada mostrar_info
+ * Imprime el nombre, la edad, el género, el salario mensual y
+ * las propinas del mesero, esto accediendo a los métodos de la clase.
+ *
+ * @param
+ * @return
+ */
+void Mesero::mostrar_info(){
+    std::cout << "Nombre completo: " << get_nombre() << std::endl;
     std::cout << "Edad: " << get_edad() << std::endl;
-    std::cout << "Genero: " << get_genero() << std::endl;
-    std::cout << "Salario anual: " << get_salario() << " pesos mexicanos" << std::endl;
+    std::cout << "Género: " << get_genero() << std::endl;
+    std::cout << "Salario mensual del mesero: " << get_salario() << " pesos mexicanos" << std::endl;
     std::cout << "Propinas: " << get_propinas() << " pesos mexicanos" << std::endl;
     std::cout<< std::endl;
 }
 
-// CreaciÛn de clase hija "ChefComida", hereda de clase padre "Personas"
-class ChefComida : public Personas {
+
+// Declaración de la clase ChefComida que hereda de la clase Personas
+class ChefComida : public Personas{
+// Declaro las variables privadas de instancia
 private:
-    // DeclaraciÛn de variables de instancia
-    std::string especialidad1;
-    int meses_experiencia1;
-    std::string sousChef_SoN1;
-    std::string comida_favorita;
+    std::string especialidad;
+    int mesesExperiencia;
+    std::string sousChef;
+    std::string comidaFavorita;
+// Atributos públicos
 public:
-    // Constructor
-    ChefComida() : Personas(), especialidad1(""), meses_experiencia1(0), sousChef_SoN1(""), comida_favorita("") {};
-    ChefComida(std::string nom, int ed, std::string gen, std::string espe1, int mes_exp1, std::string soChef_sn1, std::string com_fav) : Personas(nom, ed, gen), especialidad1(espe1), meses_experiencia1(mes_exp1), sousChef_SoN1(soChef_sn1), comida_favorita(com_fav) {};
-
-    // MÈtodos miembros de la clase
+    /*
+     * Constructor por default
+     *
+     * @param
+     * @return Objeto ChefComida
+     */
+    ChefComida() : Personas(), especialidad(""), mesesExperiencia(0), sousChef(""), comidaFavorita(""){};
+    /*
+     * Constructor (sobrecarga)
+     *
+     * @param nom, ed, gen, espe, mesExp, soChe, comFav
+     * @return Objeto ChefComida
+     */
+    ChefComida(std::string nom, int ed, std::string gen, std::string espe, int mesExp, std::string soChe, std::string comFav) : Personas(nom, ed, gen), especialidad(espe), mesesExperiencia(mesExp), sousChef(soChe), comidaFavorita(comFav){};
+    
+    // Métodos miembros de la clase
     // Getters
-    std::string get_especialidad1();
-    int get_meses_experiencia1();
-    std::string get_sousChef_SoN1();
-    std::string get_comida_favorita();
-    // Setters
-    void set_especialidad1(std::string);
-    void set_meses_experiencia1(int);
-    void set_sousChef_SoN1(std::string);
-    void set_comida_favorita(std::string);
-
-    void mostrar_info() override; //Override indica al programa que donde se llame la funcion del hijo y no al del padre
+    std::string get_especialidad();
+    int get_mesesExperiencia();
+    std::string get_sousChef();
+    std::string get_comidaFavorita();
+    //Setters
+    void set_especialidad(std::string);
+    void set_mesesExperiencia(int);
+    void set_sousChef(std::string);
+    void set_comidaFavorita(std::string);
+    // Método sobreescrito para mostrar la información del chef
+    void mostrar_info() override;
 };
-
-// Especificaciones getters
-std::string ChefComida::get_especialidad1() {
-    return especialidad1;
+/*
+ * getter de variable especialidad
+ * Regresa la especialidad del chef del restaurante
+ *
+ * @param
+ * @return especialidad
+ */
+std::string ChefComida::get_especialidad(){
+    return especialidad;
 }
-int ChefComida::get_meses_experiencia1() {
-    return meses_experiencia1;
+/*
+ * getter de variable mesesExperiencia
+ * Regresa los meses que el chef tiene de experiencia laboral
+ *
+ * @param
+ * @return mesesExperiencia
+ */
+int ChefComida::get_mesesExperiencia(){
+    return mesesExperiencia;
 }
-std::string ChefComida::get_sousChef_SoN1() {
-    return sousChef_SoN1;
+/*
+ * getter de variable sousChef
+ * Regresa el nombre del respectivo sous chef de cada uno
+ * de los chefs del restaurante
+ *
+ * @param
+ * @return sousChef
+ */
+std::string ChefComida::get_sousChef(){
+    return sousChef;
 }
-std::string ChefComida::get_comida_favorita() {
-    return comida_favorita;
+/*
+ * getter de variable comidaFavorita
+ * Regresa la comida favorita del chef
+ *
+ * @param
+ * @return comidaFavorita
+ */
+std::string ChefComida::get_comidaFavorita(){
+    return comidaFavorita;
 }
-
-// Especificaciones setters
-void ChefComida::set_especialidad1(std::string espe1) {
-    especialidad1 = espe1;
+/*
+ * setter de variable especialidad
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param espe
+ * @return
+ */
+void ChefComida::set_especialidad(std::string espe) {
+    especialidad = espe;
 }
-void ChefComida::set_meses_experiencia1(int mes_exp1) {
-    meses_experiencia1 = mes_exp1;
+/*
+ * setter de variable mesesExperiencia
+ * Asigna a la variable un integer que recibe del objeto
+ *
+ * @param mesExp
+ * @return
+ */
+void ChefComida::set_mesesExperiencia(int mesExp) {
+    mesesExperiencia = mesExp;
 }
-void ChefComida::set_sousChef_SoN1(std::string soChef_sn1) {
-    sousChef_SoN1 = soChef_sn1;
+/*
+ * setter de variable sousChef
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param soChe
+ * @return
+ */
+void ChefComida::set_sousChef(std::string soChe) {
+    sousChef = soChe;
 }
-void ChefComida::set_comida_favorita(std::string com_fav) {
-    comida_favorita = com_fav;
+/*
+ * setter de variable comidaFavorita
+ * Asigna a la variable un string que recibe del objeto
+ *
+ * @param comFav
+ * @return
+ */
+void ChefComida::set_comidaFavorita(std::string comFav) {
+    comidaFavorita = comFav;
 }
-
+/*
+ * Función llamada mostrar_info
+ * Imprime el nombre, la edad, el género, la especialidad, los meses de
+ * experiencia, nombre del souschef y la comida favorita
+ * del chef. Se hace uso del puntero "this" para acceder a
+ * los métodos miembros de la clase.
+ *
+ * @param
+ * @return
+ */
 void ChefComida::mostrar_info() {
-    std::cout << "Nombre : " << this->nombre << std::endl;
-    std::cout << "Edad: " << this->edad << std::endl;
-    std::cout << "Genero: " << this->genero << std::endl;
-    std::cout << "Especialidad 1: " << this->especialidad1 << std::endl;
-    std::cout << "Meses experiencia : " << this->meses_experiencia1 << std::endl;
-    std::cout << "SousChef SoN 1: " << this->sousChef_SoN1 << std::endl;
-    std::cout << "Comida favorita: " << this->comida_favorita << std::endl;
+    std::cout << "Nombre completo: " << this-> nombre << std::endl;
+    std::cout << "Edad: " << this-> edad << std::endl;
+    std::cout << "Género: " << this-> genero << std::endl;
+    std::cout << "Especialidad: " << this-> especialidad << std::endl;
+    std::cout << "Meses experiencia: " << this-> mesesExperiencia << std::endl;
+    std::cout << "Nombre del SousChef: " << this-> sousChef << std::endl;
+    std::cout << "Comida favorita del Chef: " << this-> comidaFavorita << std::endl;
     std::cout<< std::endl;
 }
 
-//Creacion clase restaurante
-class Restaurante{
-private:
-    // Declaracion de variables de instancia
-    std::string nombre;
-    std::string direccion;
-    //Composición por objetos de tipo Personas
-    Personas * Empleados[30];
-    int id;
-public:
-    //Constructor
-    Restaurante(): nombre(""),direccion(""), id(0){};
-    Restaurante(std::string nom, std::string dir): nombre(nom),direccion(dir), id(0){};
-
-    // Metodos miembros de la clase
-    //Getters
-    std::string get_nombre();
-    std::string get_direccion();
-    //Setters
-    void set_nombre(std::string);
-    void set_direccion(std::string);
-    //Metodo especifico de clase
-    void crea_empleados();
-    void muestra_empleados();
-};
-
-// Especificaciones de getters
-std::string Restaurante::get_nombre() {
-    return nombre;
-}
-std::string Restaurante::get_direccion() {
-    return direccion;
-}
-
-// Especificaciones setters
-void Restaurante::set_nombre(std::string nom) {
-    nombre = nom;
-}
-void Restaurante::set_direccion(std::string dir) {
-    direccion = dir;
-}
-
-void Restaurante::crea_empleados(){
-    Empleados[id]= new Mesero("Lorenzo", 27, "Hombre", 43050.85, 15.6);
-    id++;
-    Empleados[id]= new Mesero("Pedro", 33, "Hombre", 5670.64, 18.3);
-    id++;
-    Empleados[id]= new Mesero("Joaquin", 45, "Hombre", 3988.17, 12.4);
-    id++;
-    Empleados[id]= new ChefComida("Leisa", 24, "Mujer", "Enchiladas", 41, "Si", "Pambazos");
-    id++;
-    Empleados[id]= new ChefComida("Benito", 36, "Hombre", "Tacos", 63, "No", "Nieve de vainilla");
-    id++;
-    Empleados[id]= new ChefComida("Alejandra", 29, "Mujer", "Pozole", 33, "No", "Sopes");
-    id++;
-}
-
-void Restaurante::muestra_empleados(){
-    for(int i=0;i<id;i++){
-        Empleados[i]->mostrar_info();
-    }
-}
 #endif
